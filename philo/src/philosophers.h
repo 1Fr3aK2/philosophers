@@ -9,37 +9,47 @@
 # include <sys/time.h>
 # include <unistd.h>
 
-typedef struct s_philo
-{
-}			t_philo;
+typedef pthread_mutex_t	t_mutex;
 
-typedef struct s_info
+typedef struct	s_fork
+{
+	t_mutex fork;
+	int	fork_id;
+}				t_fork;
+
+typedef struct s_philos
+{
+	int	id;
+	long	last_meal_time;
+	int		meals_eaten;
+	t_fork	*left_fork;
+	t_fork	*right_fork;
+	pthread_t thread_id;
+}			t_philos;
+
+typedef struct s_table
 {
 	long	number;
 	long	time_to_die;
 	long	time_to_eat;
 	long	time_to_sleep;
-
-}			t_info;
-
-typedef struct s_table
-{
-	t_philo *philo;
-	t_info *info;
+	long	start_simulation;
+	bool	end_simulation;
+	t_philos	*philos;
+	t_fork		*forks;
 }			t_table;
 
+// init_data
+void		struct_init(t_table *table);
 
-//init_data
-void struct_init(t_table *table);
+// parse
+bool		parse(t_table *	table, char *argv[]);
+char		*check_input(const char *str);
 
-//parse
-void parse(t_table *table, char *argv[]);
-
-//utils
-void exit_msg(char *str);
-bool is_space(char c);
-bool is_digit(char c);
-
-
+// utils
+void		exit_msg(char *str);
+bool		is_space(char c);
+bool		is_digit(char c);
+bool		check_inputs(char *argv[]);
 
 #endif

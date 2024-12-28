@@ -1,54 +1,59 @@
 #include "philosophers.h"
 
-
-/* void parse(t_table *table, char *argv[])
+char	*check_input(const char *str)
 {
-    table->info->number = ft_atol(argv[1]);
-    table->info->time_to_die = ft_atol(argv[2]);
-    table->info->time_to_eat = ft_atol(argv[3]);
-    table->info->time_to_sleep = ft_atol(argv[4]);
-} */
+	const char	*nb;
 
-
-char    *check_input(const char *str)
-{
-    if (!str)
-        return (false);
-    while(is_space(*str))
-        str++;
-    if (*str == '+')
-        str++;
-    if (*str == '-')
-        return (exit_msg("Only positive values can be acepted\n"));
-    if (!is_digit(*str))
-        return (exit_msg("only digits can be acepted\n"));
-    while(*str)
-    {
-        if (!is_digit(str))
-            return (exit_msg("Invalid input\n"));
-        str++;
-    }
+	if (!str)
+		return (NULL);
+	while (is_space(*str))
+		str++;
+	if (*str == '+')
+		str++;
+	if (*str == '-')
+		return (NULL);
+	if (!is_digit(*str))
+		return (NULL);
+	nb = str;
+	while (*nb)
+	{
+		if (!is_digit(*nb))
+			return (NULL);
+		nb++;
+	}
+	return ((char *)str);
 }
 
-static long ft_atol(const char *str)
+static long	ft_atol(const char *str)
 {
-    /* long nb; */
+	long	nb;
 
-    if (!str)
-        return (-1);
-    str = check_input(str);
-    printf("%s", str);
+	if (!str)
+		return (-1);
+	str = check_input(str);
+	nb = 0;
+	while (*str >= 48 && *str <= 57)
+	{
+		nb *= 10;
+		nb += *str - 48;
+		str++;
+	}
+	return (nb);
 }
 
-int main()
+bool	parse(t_table *table, char *argv[])
 {
-    char *str = "0123456";
-    long nb = ft_atol(str);
-    printf("%ld", nb);
+	table->number = ft_atol(argv[1]);
+	if (table->number > INT_MAX || table->number < 1)
+		return (false);
+	table->time_to_die = ft_atol(argv[2]);
+	if (table->time_to_die > INT_MAX || table->time_to_die < 1)
+		return (false);
+	table->time_to_eat = ft_atol(argv[3]);
+	if (table->time_to_eat > INT_MAX || table->time_to_eat < 1)
+		return (false);
+	table->time_to_sleep = ft_atol(argv[4]);
+	if (table->time_to_sleep > INT_MAX || table->time_to_sleep < 1)
+		return (false);
+	return (true);
 }
-
-
-/* bool is_space(char c)
-{
-    return ((c >= 9 && c <= 13 || c == 32));
-} */
