@@ -2,6 +2,7 @@ SRCS =	src/main.c \
 		src/parse.c \
 		src/utils.c \
 		src/init_data.c \
+		src/safe_functions.c \
 
 NAME = philo
 
