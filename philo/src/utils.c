@@ -30,3 +30,44 @@ bool	check_inputs(char *argv[])
 	}
 	return (true);
 }
+
+long gettime(t_time time)
+{
+	struct timeval tv;
+
+	if (gettimeofday(&tv, NULL) != 0)
+		return (exit_msg("Error with gettimeofday"), -1);
+	if (time == SECONDS)
+		return (tv.tv_sec + (tv.tv_usec / 1e6));
+	else if (time == MILISECONDES)
+		return ((tv.tv_sec * 1e3) + (tv.tv_usec / 1e3));
+	else if (time == MIRCOSECONDS)
+		return ((tv.tv_sec * 1e6) + tv.tv_usec);
+	else
+		return (exit_msg("Wrong input"), -1);
+	return (1);
+}
+
+void my_usleep(long usec, t_table *table)
+{
+	long start;
+	long passed;
+	long left;
+
+	start = gettime(MIRCOSECONDS);
+	while(gettime(MIRCOSECONDS) - start < usec)
+	{
+		//se ja tiver acabado break;
+		if (simulation_finish(table))
+			break;
+		passed = gettime(MIRCOSECONDS) - start;
+		left = usec - passed;
+		if (left > 1e3)
+			usleep(usec/2);
+		else
+		{
+			while(gettime(MIRCOSECONDS) - start < usec)
+				;
+		}
+	}
+}

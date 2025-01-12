@@ -3,6 +3,10 @@ SRCS =	src/main.c \
 		src/utils.c \
 		src/init_data.c \
 		src/safe_functions.c \
+		src/dinner_start.c \
+		src/getter_setters.c \
+		src/synchro_utils.c \
+		src/write.c \
 
 NAME = philo
 
