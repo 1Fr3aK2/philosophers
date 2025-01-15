@@ -32,8 +32,8 @@ static void init_philo(t_table *table)
 		philo->first_fork = NULL;
 		mutex_handle(&philo->philo_mutex, INIT);
 		assign_forks(philo, table->forks, i);
-		i++;
 	}
+	printf("ended init_philo\n");
 }
 
 void	struct_init(t_table *table)
@@ -51,6 +51,7 @@ void	struct_init(t_table *table)
     	return;
 	}
 	mutex_handle(&table->table_mutex, INIT);
+	mutex_handle(&table->write_mutex, INIT);
 	table->forks = malloc(sizeof(t_fork) * table->number);
 	if (!table->forks)
 	{

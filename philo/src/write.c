@@ -10,8 +10,10 @@ void	write_status(t_status status, t_philos *philo)
 		return ;
     if (!simulation_finish(philo->table))
 	{
-		if (status == FIRST_FORK || status == SECOND_FORK)
-			printf("%ld: %d has taken a fork\n", time_passed, philo->id);
+		if (status == FIRST_FORK)
+			printf("%ld: %d has taken 1 fork\n", time_passed, philo->id);
+		else if (status == SECOND_FORK)
+			printf("%ld: %d has taken 2 fork\n", time_passed, philo->id);
 		else if (status == SLEEPING)
 			printf("%ld: %d is sleeping\n", time_passed, philo->id);
 		else if (status == THINKING)
@@ -23,3 +25,4 @@ void	write_status(t_status status, t_philos *philo)
 	}
 	mutex_handle(&philo->table->write_mutex, UNLOCK);
 }
+
