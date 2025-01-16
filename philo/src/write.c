@@ -1,28 +1,25 @@
-#include "philosophers.h"
+#include "philo.h"
 
-void	write_status(t_status status, t_philos *philo)
+void	write_status(t_status status, t_philo *philo)
 {
-	long time_passed;
+	long elapsed;
 
-	time_passed = gettime(MILISECONDES) - philo->table->start_simulation;
-	mutex_handle(&philo->table->write_mutex, LOCK);
-	if (philo->full)
+	elapsed = gettime(MILISECONDES) - philo->table->start_simulation;
+    if (philo->full)
+    {
 		return ;
-    if (!simulation_finish(philo->table))
-	{
-		if (status == FIRST_FORK)
-			printf("%ld: %d has taken 1 fork\n", time_passed, philo->id);
-		else if (status == SECOND_FORK)
-			printf("%ld: %d has taken 2 fork\n", time_passed, philo->id);
-		else if (status == SLEEPING)
-			printf("%ld: %d is sleeping\n", time_passed, philo->id);
-		else if (status == THINKING)
-			printf("%ld: %d is thinking\n", time_passed, philo->id);
-		else if (status == DIED)
-			printf("%ld: %d died\n", time_passed, philo->id);
-		else if (status == EATING)
-			printf("%ld: %d is eating\n", time_passed, philo->id);
 	}
-	mutex_handle(&philo->table->write_mutex, UNLOCK);
+	safe_mutex_handle(&philo->table->write_mutex, LOCK);
+	if ((status == FIRST_FORK || status == SECOND_FORK)
+		&& !simulation_finish(philo->table))
+		printf("%ld: %d has taken a fork\n", elapsed, philo->id);
+	else if (status == SLEEPING && !simulation_finish(philo->table))
+		printf("%ld: %d is sleeping\n", elapsed, philo->id);
+	else if (status == THINKING && !simulation_finish(philo->table))
+		printf("%ld: %d is thinking\n", elapsed, philo->id);
+	else if (status == DIED && !simulation_finish(philo->table))
+		printf("%ld: %d died\n", elapsed, philo->id);
+	else if (status == EATING && !simulation_finish(philo->table))
+		printf("%ld: %d is eating\n", elapsed, philo->id);
+	safe_mutex_handle(&philo->table->write_mutex, UNLOCK);
 }
-

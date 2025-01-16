@@ -1,4 +1,4 @@
-#include "philosophers.h"
+#include "philo.h"
 
 int	main(int argc, char *argv[])
 {
@@ -10,7 +10,7 @@ int	main(int argc, char *argv[])
 	{
 		if (!parse(&table, argv))
 			return (printf("Error: parsing"));
-        struct_init(&table);
+		data_init(&table);
 		dinner_start(&table);
-    }
+	}
 }

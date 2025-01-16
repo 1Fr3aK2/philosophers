@@ -1,7 +1,7 @@
-#include "philosophers.h"
+#include "philo.h"
 
-void wait_threads(t_table *table)
+void wait_all_threads(t_table *table)
 {
-    while(!get_bool(&table->table_mutex, &table->ready))
+    while (!get_bool(&table->table_mutex, &table->all_threads_ready))
         ;
 }

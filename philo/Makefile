@@ -1,10 +1,10 @@
 SRCS =	src/main.c \
 		src/parse.c \
 		src/utils.c \
-		src/init_data.c \
-		src/safe_functions.c \
-		src/dinner_start.c \
-		src/getter_setters.c \
+		src/init.c \
+		src/safe.c \
+		src/dinner.c \
+		src/getters_setters.c \
 		src/synchro_utils.c \
 		src/write.c \
 
