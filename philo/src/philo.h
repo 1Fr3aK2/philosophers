@@ -71,6 +71,8 @@ typedef struct s_table
 	long				start_simulation;
 	bool				end_simulation;
 	bool				all_threads_ready;
+	long				threads_running;
+	pthread_t			main_thread;
 	t_mtx				write_mutex;
 	t_mtx				table_mutex;
 	t_fork				*forks;
@@ -79,26 +81,53 @@ typedef struct s_table
 
 // utils
 void					error_exit(const char *error);
+void					my_usleep(long usec, t_table *table);
+long					gettime(t_time time);
+void					clean(t_table *table);
+bool					all_running(t_mtx *mutex, long *threads, long nbr);
+
+// write
+void					write_status(t_status status, t_philo *philo);
+
+// synchro_utils
+void					wait_all_threads(t_table *table);
+void					de_synchronize(t_philo *philo);
+bool					simulation_finish(t_table *table);
+
+// safe
+void					safe_thread_handle(pthread_t *thread,
+							void *(*f)(void *), void *data, t_code code);
+void					safe_mutex_handle(t_mtx *mutex, t_code code);
+
+// parse utils
 bool					is_space(char c);
 bool					is_digit(char c);
 bool					check_inputs(char *argv[]);
 char					*check_input(const char *str);
-bool					parse(t_table *table, char **argv);
-void					safe_thread_handle(pthread_t *thread,
-							void *(*f)(void *), void *data, t_code code);
-void					safe_mutex_handle(t_mtx *mutex, t_code code);
-void					data_init(t_table *table);
-void					*dinner_simulation(void *data);
 
+// parse
+bool					parse(t_table *table, char **argv);
+
+// monitor_dinner
+void					*monitor_dinner(void *data);
+
+// init
+void					data_init(t_table *table);
+
+// getters_setters
 void					set_bool(t_mtx *mutex, bool *dest, bool value);
 bool					get_bool(t_mtx *mutex, bool *value);
 long					get_long(t_mtx *mutex, long *value);
 void					set_long(t_mtx *mutex, long *dest, long value);
-bool					simulation_finish(t_table *table);
-void					wait_all_threads(t_table *table);
-long					gettime(t_time time);
-void					my_usleep(long usec, t_table *table);
-void					write_status(t_status status, t_philo *philo);
+void					set_increase(t_mtx *mutex, long *value);
+
+// dinner
+void					thinking(t_philo *philo, bool simulation);
+void					*dinner_simulation(void *data);
 void					dinner_start(t_table *table);
 
+// ops
+void					sleeping(t_philo *philo);
+void					thinking(t_philo *philo, bool simulation);
+void					eat(t_philo *philo);
 #endif

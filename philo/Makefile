@@ -7,6 +7,9 @@ SRCS =	src/main.c \
 		src/getters_setters.c \
 		src/synchro_utils.c \
 		src/write.c \
+		src/monitor_dinner.c \
+		src/parse_utils.c \
+		src/ops.c \
 
 NAME = philo
 

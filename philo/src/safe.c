@@ -4,14 +4,18 @@ static void	handle_mutex_error(int status, t_code code)
 {
 	if (status == 0)
 		return ;
-	if (status == EINVAL && (code == INIT || code == LOCK || code == UNLOCK || code == DESTROY))
-		return (error_exit("Invalid mutex or operation on an uninitialized mutex."));
+	if (status == EINVAL && (code == INIT || code == LOCK || code == UNLOCK
+			|| code == DESTROY))
+		return (error_exit
+			("Invalid mutex or operation on an uninitialized mutex."));
 	if (status == EDEADLK)
 		return (error_exit("Deadlock condition detected."));
 	if (status == EPERM)
-		return (error_exit("Thread does not own the mutex or lacks permission."));
+		return (error_exit
+			("Thread does not own the mutex or lacks permission."));
 	if (status == ENOMEM)
-		return (error_exit("Not enough memory available to create/initialize the mutex."));
+		return (error_exit
+			("Not enough memory available to create/initialize the mutex."));
 	if (status == EBUSY)
 		return (error_exit("The mutex is already locked."));
 }
@@ -39,7 +43,8 @@ static void	handle_thread_error(int status, t_code code)
 	if (status == EDEADLK)
 		return (error_exit("Deadlock condition detected."));
 	if (status == EINVAL && code == CREATE)
-		return (error_exit("Invalid attributes specified for thread creation."));
+		return (error_exit
+			("Invalid attributes specified for thread creation."));
 	if (status == EINVAL && (code == JOIN || code == DETACH))
 		return (error_exit("Thread not joinable or invalid operation."));
 	if (status == EPERM)
@@ -50,7 +55,8 @@ static void	handle_thread_error(int status, t_code code)
 		return (error_exit("Thread not found with the given thread ID."));
 }
 
-void	safe_thread_handle(pthread_t *thread, void *(*f)(void *), void *data, t_code code)
+void	safe_thread_handle(pthread_t *thread, void *(*f)(void *), void *data,
+		t_code code)
 {
 	if (!thread)
 		return (error_exit("Invalid thread pointer."));
