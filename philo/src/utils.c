@@ -1,4 +1,4 @@
-#include "philo.h"
+#include "../includes/philo.h"
 
 void	error_exit(const char *error)
 {

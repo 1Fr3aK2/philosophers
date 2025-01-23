@@ -1,4 +1,4 @@
-#include "philo.h"
+#include "../includes/philo.h"
 
 static void	assign_forks(t_philo *philo, t_fork *forks, int position)
 {

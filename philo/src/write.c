@@ -1,4 +1,4 @@
-#include "philo.h"
+#include "../includes/philo.h"
 
 void	write_status(t_status status, t_philo *philo)
 {

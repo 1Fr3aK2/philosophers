@@ -1,4 +1,4 @@
-#include "philo.h"
+#include "../includes/philo.h"
 
 static bool	died(t_philo *philo)
 {

@@ -1,4 +1,4 @@
-#include "philo.h"
+#include "../includes/philo.h"
 
 void	wait_all_threads(t_table *table)
 {

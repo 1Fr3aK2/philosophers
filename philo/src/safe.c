@@ -1,4 +1,4 @@
-#include "philo.h"
+#include "../includes/philo.h"
 
 static void	handle_mutex_error(int status, t_code code)
 {

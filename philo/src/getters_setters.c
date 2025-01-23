@@ -1,4 +1,4 @@
-#include "philo.h"
+#include "../includes/philo.h"
 
 void	set_bool(t_mtx *mutex, bool *dest, bool value)
 {

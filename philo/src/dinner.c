@@ -1,4 +1,4 @@
-#include "philo.h"
+#include "../includes/philo.h"
 
 static void	*solo_philo(void *data)
 {
