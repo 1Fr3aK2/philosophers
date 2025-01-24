@@ -36,13 +36,13 @@ void	*dinner_simulation(void *data)
 	return (NULL);
 }
 
-void	dinner_start(t_table *table)
+bool	dinner_start(t_table *table)
 {
 	int	i;
 
 	i = -1;
 	if (table->nbr_limits_meals == 0)
-		return ;
+		return (false);
 	else if (table->philo_nbr == 1)
 		safe_thread_handle(&table->philos[0].thread_id, solo_philo,
 			&table->philos[0], CREATE);
@@ -60,4 +60,5 @@ void	dinner_start(t_table *table)
 		safe_thread_handle(&table->philos[i].thread_id, NULL, NULL, JOIN);
 	set_bool(&table->table_mutex, &table->end_simulation, true);
 	safe_thread_handle(&table->main_thread, NULL, NULL, JOIN);
+	return (true);
 }

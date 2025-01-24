@@ -112,7 +112,7 @@ bool					parse(t_table *table, char **argv);
 void					*monitor_dinner(void *data);
 
 // init
-void					data_init(t_table *table);
+bool					data_init(t_table *table);
 
 // getters_setters
 void					set_bool(t_mtx *mutex, bool *dest, bool value);
@@ -124,7 +124,7 @@ void					set_increase(t_mtx *mutex, long *value);
 // dinner
 void					thinking(t_philo *philo, bool simulation);
 void					*dinner_simulation(void *data);
-void					dinner_start(t_table *table);
+bool					dinner_start(t_table *table);
 
 // ops
 void					sleeping(t_philo *philo);

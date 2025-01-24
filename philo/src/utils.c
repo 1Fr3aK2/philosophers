@@ -54,12 +54,17 @@ void	clean(t_table *table)
 	while (++i < table->philo_nbr)
 	{
 		philo = table->philos + i;
-		safe_mutex_handle(&philo->philo_mutex, DESTROY);
+		if (&philo->philo_mutex)
+			safe_mutex_handle(&philo->philo_mutex, DESTROY);
 	}
-	safe_mutex_handle(&table->write_mutex, DESTROY);
-	safe_mutex_handle(&table->table_mutex, DESTROY);
-	free(table->forks);
-	free(table->philos);
+	if (&table->write_mutex)
+		safe_mutex_handle(&table->write_mutex, DESTROY);
+	if (&table->table_mutex)
+		safe_mutex_handle(&table->table_mutex, DESTROY);
+	if (table->forks)
+		free(table->forks);
+	if (table->philos)
+		free(table->philos);
 }
 
 bool	all_running(t_mtx *mutex, long *threads, long nbr)

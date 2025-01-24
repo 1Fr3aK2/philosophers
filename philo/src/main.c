@@ -10,8 +10,10 @@ int	main(int argc, char *argv[])
 	{
 		if (!parse(&table, argv))
 			return (printf("Error: parsing"));
-		data_init(&table);
-		dinner_start(&table);
+		if (!data_init(&table))
+			return (error_exit("Error initializing data"), -1);
+		if (!dinner_start(&table))
+			return (error_exit("Error starting dinner"), clean(&table), -1);
 		clean(&table);
 	}
 }
