@@ -55,6 +55,6 @@ bool	data_init(t_table *table)
 		table->forks[i].fork_id = i;
 	}
 	if (!philo_init(table))
-		return (false);
+		return (free(table->philos), free(table->forks), false);
 	return (true);
 }

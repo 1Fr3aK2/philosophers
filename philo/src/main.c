@@ -4,7 +4,7 @@ int	main(int argc, char *argv[])
 {
 	t_table	table;
 
-	if (argc != 5 || !check_inputs(argv))
+	if ((argc < 5 && argc > 6) || !check_inputs(argv))
 		return (printf("Error: Invalid input\n"));
 	else
 	{
