@@ -52,7 +52,6 @@ bool	data_init(t_table *table)
 	while (++i < table->philo_nbr)
 	{
 		safe_mutex_handle(&table->forks[i].fork, INIT);
-		/* table->forks[i].fork_id = i; */
 	}
 	if (!philo_init(table))
 		return (free(table->philos), free(table->forks), false);
