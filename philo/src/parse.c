@@ -35,7 +35,11 @@ bool	parse(t_table *table, char **argv)
 		|| table->time_to_sleep < 6e4)
 		error_exit("use timestamps bigger than 60ms");
 	if (argv[5])
+	{
 		table->nbr_limits_meals = ft_atol(argv[5]);
+		if (table->nbr_limits_meals > INT_MAX || table->nbr_limits_meals < 1)
+			return (false);
+	}
 	else
 		table->nbr_limits_meals = -1;
 	return (true);

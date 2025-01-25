@@ -4,12 +4,12 @@ int	main(int argc, char *argv[])
 {
 	t_table	table;
 
-	if ((argc < 5 && argc > 6) || !check_inputs(argv))
-		return (printf("Error: Invalid input\n"));
+	if ((argc < 5 || argc > 6) || !check_inputs(argv))
+		return (error_exit("Error: Invalid input"), -1);
 	else
 	{
 		if (!parse(&table, argv))
-			return (printf("Error: parsing"));
+			return (error_exit("Error: parsing"), -1);
 		if (!data_init(&table))
 			return (error_exit("Error initializing data"), -1);
 		if (!dinner_start(&table))

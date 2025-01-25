@@ -44,7 +44,7 @@ typedef enum s_code
 typedef struct s_fork
 {
 	t_mtx				fork;
-	int					fork_id;
+	/* int					fork_id; */
 }						t_fork;
 
 typedef struct s_philo

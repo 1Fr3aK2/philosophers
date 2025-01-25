@@ -10,19 +10,6 @@ bool	is_digit(char c)
 	return (c >= 48 && c <= 57);
 }
 
-bool	check_inputs(char *argv[])
-{
-	int	i;
-
-	i = 0;
-	while (argv[++i])
-	{
-		if (!check_input(argv[i]))
-			return (false);
-	}
-	return (true);
-}
-
 char	*check_input(const char *str)
 {
 	const char	*nb;
@@ -45,4 +32,17 @@ char	*check_input(const char *str)
 		nb++;
 	}
 	return ((char *)str);
+}
+
+bool	check_inputs(char *argv[])
+{
+	int	i;
+
+	i = 0;
+	while (argv[++i])
+	{
+		if (!check_input(argv[i]))
+			return (false);
+	}
+	return (true);
 }
