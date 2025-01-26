@@ -44,3 +44,6 @@ bool	parse(t_table *table, char **argv)
 		table->nbr_limits_meals = -1;
 	return (true);
 }
+
+// * 1e3 = * 1000 -> conversao ms -> microsegundos
+// t_die < 6e4 -> t_die < 60ms -> 60000 microsegundos

@@ -80,7 +80,7 @@ typedef struct s_table
 
 // utils
 void					error_exit(const char *error);
-void					my_usleep(long usec, t_table *table);
+void					my_usleep(long t_microseconds, t_table *table);
 long					gettime(t_time time);
 void					clean(t_table *table);
 bool					all_running(t_mtx *mutex, long *threads, long nbr);

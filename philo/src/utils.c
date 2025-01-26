@@ -5,24 +5,24 @@ void	error_exit(const char *error)
 	printf("%s\n", error);
 }
 
-void	my_usleep(long usec, t_table *table)
+void	my_usleep(long t_microseconds, t_table *table)
 {
 	long	start;
 	long	elapsed;
 	long	rem;
 
 	start = gettime(MIRCOSECONDS);
-	while (gettime(MIRCOSECONDS) - start < usec)
+	while (gettime(MIRCOSECONDS) - start < t_microseconds)
 	{
 		if (simulation_finish(table))
 			break ;
 		elapsed = gettime(MIRCOSECONDS) - start;
-		rem = usec - elapsed;
+		rem = t_microseconds - elapsed;
 		if (rem > 1e3)
 			usleep(rem / 2);
 		else
 		{
-			while (gettime(MIRCOSECONDS) - start < usec)
+			while (gettime(MIRCOSECONDS) - start < t_microseconds)
 				;
 		}
 	}
@@ -42,7 +42,7 @@ long	gettime(t_time time)
 		return ((tv.tv_sec * 1e6) + tv.tv_usec);
 	else
 		error_exit("Wrong input\n");
-	return (1337);
+	return (1);
 }
 
 void	clean(t_table *table)
