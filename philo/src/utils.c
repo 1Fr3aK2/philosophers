@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/27 13:47:15 by raamorim          #+#    #+#             */
+/*   Updated: 2025/01/27 13:48:59 by raamorim         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/philo.h"
 
 void	error_exit(const char *error)
@@ -54,13 +66,10 @@ void	clean(t_table *table)
 	while (++i < table->philo_nbr)
 	{
 		philo = table->philos + i;
-		if (&philo->philo_mutex)
-			safe_mutex_handle(&philo->philo_mutex, DESTROY);
+		safe_mutex_handle(&philo->philo_mutex, DESTROY);
 	}
-	if (&table->write_mutex)
-		safe_mutex_handle(&table->write_mutex, DESTROY);
-	if (&table->table_mutex)
-		safe_mutex_handle(&table->table_mutex, DESTROY);
+	safe_mutex_handle(&table->write_mutex, DESTROY);
+	safe_mutex_handle(&table->table_mutex, DESTROY);
 	if (table->forks)
 		free(table->forks);
 	if (table->philos)
