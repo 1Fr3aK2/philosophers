@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 13:47:06 by raamorim          #+#    #+#             */
-/*   Updated: 2025/01/27 13:47:07 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/01/27 17:54:36 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ bool	parse(t_table *table, char **argv)
 	table->time_to_sleep = ft_atol(argv[4]) * 1e3;
 	if (table->time_to_sleep > INT_MAX || table->time_to_sleep < 1)
 		return (false);
-	if (table->time_to_die < 6e4 || table->time_to_eat < 6e4
+/* 	if (table->time_to_die < 6e4 || table->time_to_eat < 6e4
 		|| table->time_to_sleep < 6e4)
-		error_exit("use timestamps bigger than 60ms");
+		error_exit("use timestamps bigger than 60ms"); */
 	if (argv[5])
 	{
 		table->nbr_limits_meals = ft_atol(argv[5]);
