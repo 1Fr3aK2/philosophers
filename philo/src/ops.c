@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 13:47:00 by raamorim          #+#    #+#             */
-/*   Updated: 2025/01/28 04:48:15 by rafael           ###   ########.fr       */
+/*   Updated: 2025/01/28 05:36:44 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	thinking(t_philo *philo, bool simulation)
 	time_think = time_eat * 2 - time_sleep;
 	if (time_think < 0)
 		time_think = 0;
-	my_usleep(time_think * 0.5, philo->table);
+	my_usleep(time_think * 0.42, philo->table);
 }
 
 void	eat(t_philo *philo)
