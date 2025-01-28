@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 13:46:44 by raamorim          #+#    #+#             */
-/*   Updated: 2025/01/28 01:43:05 by rafael           ###   ########.fr       */
+/*   Updated: 2025/01/28 04:46:52 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	*dinner_simulation(void *data)
 	set_long(&philo->philo_mutex, &philo->last_meal_time,
 		gettime(MILISECONDES));
 	set_increase(&philo->table->table_mutex, &philo->table->threads_running);
-	de_synchronize(philo);
 	while (!simulation_finish(philo->table))
 	{
 		if (philo->full)

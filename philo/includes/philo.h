@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 13:47:33 by raamorim          #+#    #+#             */
-/*   Updated: 2025/01/28 01:41:40 by rafael           ###   ########.fr       */
+/*   Updated: 2025/01/28 04:46:44 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ void					write_status(t_status status, t_philo *philo);
 
 // synchro_utils
 void					wait_all_threads(t_table *table);
-void					de_synchronize(t_philo *philo);
 bool					simulation_finish(t_table *table);
 
 // safe

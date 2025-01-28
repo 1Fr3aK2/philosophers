@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ops.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 13:47:00 by raamorim          #+#    #+#             */
-/*   Updated: 2025/01/27 13:47:01 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/01/28 04:48:15 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ void	thinking(t_philo *philo, bool simulation)
 
 	if (!simulation)
 		write_status(THINKING, philo);
-	if (philo->table->philo_nbr % 2 == 0)
-		return ;
 	time_eat = philo->table->time_to_eat;
 	time_sleep = philo->table->time_to_sleep;
 	time_think = time_eat * 2 - time_sleep;

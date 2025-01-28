@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 13:47:15 by raamorim          #+#    #+#             */
-/*   Updated: 2025/01/28 01:42:02 by rafael           ###   ########.fr       */
+/*   Updated: 2025/01/28 04:21:18 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ long	gettime(t_time time)
 	struct timeval	tv;
 
 	if (gettimeofday(&tv, NULL))
-		error_exit("Gettimeofday failed");
+		return (-1);
 	if (time == SECONDS)
 		return (tv.tv_sec + (tv.tv_usec / 1e6));
 	else if (time == MILISECONDES)
@@ -54,7 +54,7 @@ long	gettime(t_time time)
 	else if (time == MICROSECONDS)
 		return ((tv.tv_sec * 1e6) + tv.tv_usec);
 	else
-		return (error_exit("Wrong input\n"), -1);
+		return (-1);
 	return (1);
 }
 

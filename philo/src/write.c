@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   write.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 13:47:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/01/27 13:47:18 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/01/28 04:34:34 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,6 @@ void	write_status(t_status status, t_philo *philo)
 	long	elapsed;
 
 	elapsed = gettime(MILISECONDES) - philo->table->start_simulation;
-	if (philo->full)
-	{
-		return ;
-	}
 	safe_mutex_handle(&philo->table->write_mutex, LOCK);
 	if ((status == FIRST_FORK || status == SECOND_FORK)
 		&& !simulation_finish(philo->table))
