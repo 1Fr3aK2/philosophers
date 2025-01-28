@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 13:47:33 by raamorim          #+#    #+#             */
-/*   Updated: 2025/01/27 13:47:34 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/01/28 01:41:40 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef enum s_time
 {
 	SECONDS,
 	MILISECONDES,
-	MIRCOSECONDS,
+	MICROSECONDS,
 }						t_time;
 
 typedef enum s_status

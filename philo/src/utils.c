@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 13:47:15 by raamorim          #+#    #+#             */
-/*   Updated: 2025/01/27 13:48:59 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/01/28 01:42:02 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	error_exit(const char *error)
 {
 	printf("%s\n", error);
+	return ;
 }
 
 void	my_usleep(long t_microseconds, t_table *table)
@@ -23,18 +24,18 @@ void	my_usleep(long t_microseconds, t_table *table)
 	long	elapsed;
 	long	rem;
 
-	start = gettime(MIRCOSECONDS);
-	while (gettime(MIRCOSECONDS) - start < t_microseconds)
+	start = gettime(MICROSECONDS);
+	while (gettime(MICROSECONDS) - start < t_microseconds)
 	{
 		if (simulation_finish(table))
 			break ;
-		elapsed = gettime(MIRCOSECONDS) - start;
+		elapsed = gettime(MICROSECONDS) - start;
 		rem = t_microseconds - elapsed;
 		if (rem > 1e3)
 			usleep(rem / 2);
 		else
 		{
-			while (gettime(MIRCOSECONDS) - start < t_microseconds)
+			while (gettime(MICROSECONDS) - start < t_microseconds)
 				;
 		}
 	}
@@ -50,10 +51,10 @@ long	gettime(t_time time)
 		return (tv.tv_sec + (tv.tv_usec / 1e6));
 	else if (time == MILISECONDES)
 		return ((tv.tv_sec * 1e3) + (tv.tv_usec / 1e3));
-	else if (time == MIRCOSECONDS)
+	else if (time == MICROSECONDS)
 		return ((tv.tv_sec * 1e6) + tv.tv_usec);
 	else
-		error_exit("Wrong input\n");
+		return (error_exit("Wrong input\n"), -1);
 	return (1);
 }
 
