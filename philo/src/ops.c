@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 13:47:00 by raamorim          #+#    #+#             */
-/*   Updated: 2025/01/28 05:36:44 by rafael           ###   ########.fr       */
+/*   Updated: 2025/01/29 03:06:34 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,23 @@
 void	sleeping(t_philo *philo)
 {
 	write_status(SLEEPING, philo);
-	my_usleep(philo->table->time_to_sleep, philo->table);
+	my_usleep(philo->table, philo->table->time_to_sleep);
 }
 
-void	thinking(t_philo *philo, bool simulation)
+void	thinking(t_philo *philo)
 {
-	long	time_eat;
-	long	time_sleep;
-	long	time_think;
+	long	time_to_think;
 
-	if (!simulation)
-		write_status(THINKING, philo);
-	time_eat = philo->table->time_to_eat;
-	time_sleep = philo->table->time_to_sleep;
-	time_think = time_eat * 2 - time_sleep;
-	if (time_think < 0)
-		time_think = 0;
-	my_usleep(time_think * 0.42, philo->table);
+	write_status(THINKING, philo);
+	time_to_think = (philo->table->time_to_die - (gettime(MICROSECONDS)
+				- philo->last_meal_time) - philo->table->time_to_eat) / 2;
+	if (time_to_think < 0)
+		time_to_think = 0;
+	if (time_to_think == 0)
+		time_to_think = 1;
+	if (time_to_think > 600)
+		time_to_think = 200;
+	my_usleep(philo->table, time_to_think);
 }
 
 void	eat(t_philo *philo)
@@ -44,7 +44,7 @@ void	eat(t_philo *philo)
 		gettime(MILISECONDES));
 	philo->meals_counter++;
 	write_status(EATING, philo);
-	my_usleep(philo->table->time_to_eat, philo->table);
+	my_usleep(philo->table, philo->table->time_to_eat);
 	if (philo->table->nbr_limits_meals > 0
 		&& philo->meals_counter == philo->table->nbr_limits_meals)
 		set_bool(&philo->philo_mutex, &philo->full, true);

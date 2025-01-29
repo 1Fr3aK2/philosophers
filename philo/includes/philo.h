@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 13:47:33 by raamorim          #+#    #+#             */
-/*   Updated: 2025/01/28 04:46:44 by rafael           ###   ########.fr       */
+/*   Updated: 2025/01/29 03:03:55 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ typedef struct s_table
 
 // utils
 void					error_exit(const char *error);
-void					my_usleep(long t_microseconds, t_table *table);
+void					my_usleep(t_table *table, long sleep_time);
 long					gettime(t_time time);
 void					clean(t_table *table);
 bool					all_running(t_mtx *mutex, long *threads, long nbr);
@@ -132,12 +132,11 @@ void					set_long(t_mtx *mutex, long *dest, long value);
 void					set_increase(t_mtx *mutex, long *value);
 
 // dinner
-void					thinking(t_philo *philo, bool simulation);
 void					*dinner_simulation(void *data);
 bool					dinner_start(t_table *table);
 
 // ops
 void					sleeping(t_philo *philo);
-void					thinking(t_philo *philo, bool simulation);
+void					thinking(t_philo *philo);
 void					eat(t_philo *philo);
 #endif

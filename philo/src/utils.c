@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 13:47:15 by raamorim          #+#    #+#             */
-/*   Updated: 2025/01/28 05:37:55 by rafael           ###   ########.fr       */
+/*   Updated: 2025/01/29 02:55:32 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,16 @@ void	error_exit(const char *error)
 	return ;
 }
 
-void	my_usleep(long t_microseconds, t_table *table)
+void	my_usleep(t_table *table, long sleep_time)
 {
-	long	start;
-	long	elapsed;
-	long	rem;
+	long	wake_up;
 
-	start = gettime(MICROSECONDS);
-	while (gettime(MICROSECONDS) - start < t_microseconds)
+	wake_up = gettime(MICROSECONDS) + sleep_time;
+	while (gettime(MICROSECONDS) < wake_up)
 	{
 		if (simulation_finish(table))
 			break ;
-		elapsed = gettime(MICROSECONDS) - start;
-		rem = t_microseconds - elapsed;
-		if (rem > 1e3)
-			usleep(rem / 2);
-		else
-		{
-			while (gettime(MICROSECONDS) - start < t_microseconds)
-				;
-		}
+		usleep(100);
 	}
 }
 
