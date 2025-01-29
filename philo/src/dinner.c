@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 13:46:44 by raamorim          #+#    #+#             */
-/*   Updated: 2025/01/28 04:46:52 by rafael           ###   ########.fr       */
+/*   Updated: 2025/01/29 03:08:46 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	*dinner_simulation(void *data)
 			break ;
 		eat(philo);
 		sleeping(philo);
-		thinking(philo, false);
+		thinking(philo);
 	}
 	return (NULL);
 }
